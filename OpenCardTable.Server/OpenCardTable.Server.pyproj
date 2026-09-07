@@ -4,7 +4,8 @@
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>41531ca3-87cf-4ee1-b4ca-b9319fe9a4c1</ProjectGuid>
     <ProjectHome>.</ProjectHome>
-    <StartupFile>OpenCardTable.Server.py</StartupFile>
+    <StartupFile>
+    </StartupFile>
     <SearchPath>
     </SearchPath>
     <WorkingDirectory>.</WorkingDirectory>
@@ -22,13 +23,27 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app\game\Zone.py" />
+    <Compile Include="app\game\__init__.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="app\main.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="app\models\CardDefinition.py" />
+    <Compile Include="app\models\CardInstance.py" />
+    <Compile Include="app\models\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="run_server.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="OpenCardTable.Server.py" />
+    <Compile Include="tests\test_card_instance.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\test_card_definition.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tests\test_health.py">
       <SubType>Code</SubType>
     </Compile>
@@ -46,6 +61,8 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="app\" />
+    <Folder Include="app\game\" />
+    <Folder Include="app\models\" />
     <Folder Include="tests\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />

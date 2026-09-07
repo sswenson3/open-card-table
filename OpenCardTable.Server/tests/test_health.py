@@ -1,5 +1,7 @@
-from fastapi.testclient import TestClient
+import pytest
+from pydantic import ValidationError
 
+from fastapi.testclient import TestClient
 from app.main import app
 
 
@@ -15,3 +17,4 @@ def test_health_endpoint() -> None:
         "status": "ok",
         "version": "0.0.1",
     }
+
