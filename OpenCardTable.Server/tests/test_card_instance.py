@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
-from app.models.CardInstance import CardInstance
-from app.game.Zone import Zone
+from app.models.card_instance import CardInstance
+from app.game.zone import Zone
 
 def test_card_instance_requires_instance_id():
     with pytest.raises(ValidationError):

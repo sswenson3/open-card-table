@@ -1,5 +1,5 @@
 from pydantic import BaseModel, Field
-from app.game.Zone import Zone
+from app.game.zone import Zone
 
 class CardInstance(BaseModel):
     instance_id: str = Field(min_length=1)

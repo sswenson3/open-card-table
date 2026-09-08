@@ -1,7 +1,7 @@
 import pytest
 from pydantic import ValidationError
 
-from app.models.CardDefinition import CardDefinition
+from app.models.card_definition import CardDefinition
 
 
 def test_card_definition_can_be_created():

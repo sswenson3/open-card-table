@@ -23,19 +23,23 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="app\game\Zone.py" />
+    <Compile Include="app\game\zone.py" />
     <Compile Include="app\game\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\main.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="app\models\CardDefinition.py" />
-    <Compile Include="app\models\CardInstance.py" />
+    <Compile Include="app\models\card_definition.py" />
+    <Compile Include="app\models\card_instance.py" />
+    <Compile Include="app\models\player.py" />
     <Compile Include="app\models\__init__.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="run_server.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\test_player.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tests\test_card_instance.py">
