@@ -23,6 +23,7 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app\game\zone_container.py" />
     <Compile Include="app\game\zone.py" />
     <Compile Include="app\game\__init__.py">
       <SubType>Code</SubType>
@@ -37,6 +38,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="run_server.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\test_zone_container.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tests\test_player.py">
