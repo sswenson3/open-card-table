@@ -22,9 +22,14 @@ def test_zone_container_rejects_invalid_zone():
         ZoneContainer(zone="not-a-zone")
 
 def test_zone_container_can_hold_card_instance():
+    definition = CardDefinition(
+        definition_id="definition-001",
+        name="Clockwork Griffin",
+    )
+
     card = CardInstance(
         instance_id="instance-001",
-        definition_id="definition-001",
+        definition=definition,
         owner_id="player-001",
         controller_id="player-001",
     )
