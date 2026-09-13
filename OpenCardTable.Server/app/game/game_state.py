@@ -58,7 +58,7 @@ class GameState(BaseModel):
         # given a card instance, find which zone it is in
         for player_id, zones in self.game_zones.items():
             for zone, zone_container in zones.items():
-                if card in zone_container.cards:
+                if zone_container.contains(card):
                     return player_id, zone
         return None
 
@@ -71,7 +71,6 @@ class GameState(BaseModel):
             if card.owner_id == player.player_id:
                 return player
         return None
-
 
     def  determine_target_scope (
             self,
@@ -116,10 +115,42 @@ class GameState(BaseModel):
         target_container = self.game_zones[target_scope][target_zone]
 
         # remove the card from the source container
-        source_container.cards.remove(card)
+        source_container.remove_card(card)
 
         # add the card to the target container
-        target_container.cards.append(card)
+        target_container.add_card(card)
 
 
         return True
+
+    # place a card that has no current location into a zone. typically this will be to the library of a player.
+    def place_card(self,card,target_zone, target_player_id=None):
+        
+        #guard rails
+        if card is None:
+            raise ValueError("card cannot be None")
+        if self.get_zone_of(card) is not None:
+            raise ValueError("card is already in a zone")
+
+        #shared used here deliberately as a psuedo-default determinetarget scope 
+        # will return properly for all cases.
+        target_scope = self.determine_target_scope (
+            card,
+            "shared",
+            target_zone,
+            target_player_id
+        )
+        target_container = self.game_zones[target_scope][target_zone]
+        # add the card to the target container
+        target_container.add_card(card)
+
+        return True
+
+    # Tap /untap a card we are not concerned with zone location at the moment.
+    def tap_card(self,card):
+        card.tap()
+
+    def untap_card(self,card):
+        card.untap()
+
+

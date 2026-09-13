@@ -18,6 +18,12 @@ class ZoneContainer(BaseModel):
 
     cards: list[CardInstance] = Field(default_factory=list)
 
+    def add_card(self, card: CardInstance) -> None:
+        self.cards.append(card)
 
+    def remove_card(self, card: CardInstance) -> None:
+        self.cards.remove(card)
 
+    def contains(self,card: CardInstance) -> bool:
+        return card in self.cards
 

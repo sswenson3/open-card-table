@@ -40,7 +40,7 @@ def test_game_state_can_add_card_to_zone():
         controller_id=player1.player_id,
     )
     # Add the card to the player's library zone
-    game_state.game_zones[player1.player_id][Zone.LIBRARY].cards.append(card)
+    game_state.place_card(card,Zone.LIBRARY)
     # Verify that the card is in the library zone
     assert game_state.game_zones[player1.player_id][Zone.LIBRARY].cards[0] is card
 
@@ -61,7 +61,8 @@ def test_game_state_can_find_card_zone():
         controller_id=player1.player_id,
     )
     # Add the card to the player's library zone
-    game_state.game_zones[player1.player_id][Zone.LIBRARY].cards.append(card)
+    # game_state.game_zones[player1.player_id][Zone.LIBRARY].cards.append(card)
+    game_state.place_card(card,Zone.LIBRARY)
 
     # Verify that the card is in the library zone
     assert game_state.get_zone_of(card) == ("player-001",Zone.LIBRARY)
@@ -82,7 +83,7 @@ def test_move_card_player_to_player_same_scope():
         controller_id=player1.player_id,
     )
     # Add the card to the player's library zone
-    game_state.game_zones[player1.player_id][Zone.LIBRARY].cards.append(card)
+    game_state.place_card(card,Zone.LIBRARY)
 
     # Move the card from library to hand
     game_state.move_card(card, Zone.HAND)
@@ -108,7 +109,7 @@ def test_move_card_player_to_shared():
         controller_id=player1.player_id,
     )
     # Add the card to the player's library zone
-    game_state.game_zones[player1.player_id][Zone.LIBRARY].cards.append(card)
+    game_state.place_card(card,Zone.LIBRARY)
 
     game_state.move_card(card, Zone.BATTLEFIELD)
 
@@ -132,8 +133,8 @@ def test_move_card_shared_to_player():
         controller_id=player1.player_id,
     )
     # Add the card to the BAttlefield  zone
-    game_state.game_zones["shared"][Zone.BATTLEFIELD].cards.append(card)
-
+    game_state.place_card(card,Zone.BATTLEFIELD,"shared")
+    
     game_state.move_card(card, Zone.GRAVEYARD)
 
     assert game_state.get_zone_of(card) == (player1.player_id,Zone.GRAVEYARD)
@@ -157,7 +158,7 @@ def test_move_card_player_to_different_player():
         controller_id=player1.player_id,
     )
     # Add the card to the BAttlefield  zone
-    game_state.game_zones["shared"][Zone.BATTLEFIELD].cards.append(card)
+    game_state.place_card(card,Zone.BATTLEFIELD,"shared")
 
     game_state.move_card(card, Zone.GRAVEYARD,player2.player_id)
 
@@ -181,32 +182,12 @@ def test_move_card_shared_to_shared():
         controller_id=player1.player_id,
     )
     # Add the card to the player's library zone
-    game_state.game_zones["shared"][Zone.BATTLEFIELD].cards.append(card)
+    game_state.place_card(card,Zone.BATTLEFIELD,"shared")
 
     game_state.move_card(card, Zone.COMMAND)
 
     assert game_state.get_zone_of(card) == ("shared",Zone.COMMAND)
-"""
-# Commented out   replaced with following two tests.
 
-def test_game_state_move_invalid_card():
-    player1 = Player(player_id="player-001", display_name="Alice")
-    game_state = GameState(players=[player1], game_zones={})
-    game_state.initialize_zones()
-    # Create a card instance
-    definition = CardDefinition(
-        definition_id="definition-001",
-        name="Clockwork Griffin",
-    )
-    card = None
-
-    # Add the card to the player's library zone
-    game_state.game_zones[player1.player_id][Zone.LIBRARY].cards.append(card)
-    
-    # Attempt to move invalid card to zone
-    with pytest.raises(ValueError):
-        game_state.move_card(card,  Zone.GRAVEYARD)
-"""
 def test_game_state_move_none_card_raises():
     player1 = Player(player_id="player-001", display_name="Alice")
     game_state = GameState(players=[player1], game_zones={})
@@ -232,3 +213,75 @@ def test_game_state_move_card_not_in_any_zone_raises():
     
     with pytest.raises(ValueError):
         game_state.move_card(card, Zone.GRAVEYARD)
+
+
+def test_game_state_can_tap_a_card():
+    player1 = Player(player_id="player-001", display_name="Alice")
+    game_state = GameState(players=[player1], game_zones={})
+    game_state.initialize_zones()
+    # Create a card instance
+    definition = CardDefinition(
+        definition_id="definition-001",
+        name="Clockwork Griffin",
+    )
+    card = CardInstance(
+        instance_id="instance-001",
+        definition=definition,
+        owner_id=player1.player_id,
+        controller_id=player1.player_id,
+        tapped=False
+    )
+    # Add the card to the player's library zone
+    game_state.place_card(card,Zone.LIBRARY)
+
+    game_state.tap_card(card)
+
+    assert card.tapped is True
+
+def test_game_state_can_untap_a_card():
+    player1 = Player(player_id="player-001", display_name="Alice")
+    game_state = GameState(players=[player1], game_zones={})
+    game_state.initialize_zones()
+    # Create a card instance
+    definition = CardDefinition(
+        definition_id="definition-001",
+        name="Clockwork Griffin",
+    )
+    card = CardInstance(
+        instance_id="instance-001",
+        definition=definition,
+        owner_id=player1.player_id,
+        controller_id=player1.player_id,
+        tapped=True
+    )
+    # Add the card to the player's library zone
+    game_state.place_card(card,Zone.LIBRARY)
+
+    game_state.untap_card(card)
+
+    assert card.tapped is False
+
+
+def test_game_state_place_card():
+    player1 = Player(player_id="player-001", display_name="Alice")
+    game_state = GameState(players=[player1], game_zones={})
+    game_state.initialize_zones()
+    # Create a card instance
+    definition = CardDefinition(
+        definition_id="definition-001",
+        name="Clockwork Griffin",
+    )
+    card= CardInstance.new(
+        definition=definition,
+        owner_id=player1.player_id,
+        controller_id=player1.player_id
+        )
+    instance = card.instance_id
+
+    # Place the card into the player's library zone
+    game_state.place_card(card,Zone.LIBRARY)
+    # Verify that the card is in the library zone
+    assert game_state.get_zone_of(card) == ("player-001",Zone.LIBRARY) and\
+        game_state.game_zones[player1.player_id][Zone.LIBRARY].cards[0].instance_id == instance
+    assert game_state.game_zones[player1.player_id][Zone.LIBRARY].cards[0] is card
+        
