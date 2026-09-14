@@ -32,11 +32,6 @@ class GameState(BaseModel):
                 Zone.GRAVEYARD: ZoneContainer(zone=Zone.GRAVEYARD),
                 Zone.EXILE: ZoneContainer(zone=Zone.EXILE),
             }
-
-            
-
-
-
     # for each player create a ZoneContainer for each zone type (library, hand,  graveyard, exile)
     # battlefield would be a shared zone, not player specific.  
     # Command zone is also shared.
@@ -152,5 +147,4 @@ class GameState(BaseModel):
 
     def untap_card(self,card):
         card.untap()
-
 

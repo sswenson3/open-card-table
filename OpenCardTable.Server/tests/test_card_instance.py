@@ -89,3 +89,10 @@ def test_multiple_card_instances_can_share_one_definition():
     assert card1 is not card2
     assert card1.instance_id != card2.instance_id
     assert card1.definition is card2.definition
+
+def test_card_instance_new_has_unique_ids():  
+    cards = {} 
+    for _ in range(1000):
+       card = CardInstance.new(card_definition,"player-001","player-001")
+       cards[card.instance_id] = card
+    assert len(cards) == 1000
