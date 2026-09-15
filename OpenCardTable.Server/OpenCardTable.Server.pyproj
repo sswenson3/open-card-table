@@ -36,6 +36,9 @@
     </Compile>
     <Compile Include="app\models\card_definition.py" />
     <Compile Include="app\models\card_instance.py" />
+    <Compile Include="tests\test_m1_acceptance.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tests\test_game_state.py">
       <SubType>Code</SubType>
     </Compile>

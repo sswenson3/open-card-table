@@ -9,16 +9,12 @@ from app.models.player import Player
 class GameState(BaseModel):
     # The game state is a collection of zones, each containing cards.
     # Each zone is represented by a ZoneContainer.
-    game_zones: dict[str, dict[Zone, ZoneContainer]]
-    players: list[Player]
+        
+    game_zones: dict[str, dict[Zone, ZoneContainer]] = Field(default_factory=dict)
+    players: list[Player] = Field(default_factory=list)
 
 
-    def __init__(self,  players=None, **data):
-        super().__init__(
-            players=players or [],
-            **data
-        )
-
+   
     def initialize_zones(self):
         self.game_zones["shared"] = {
             Zone.BATTLEFIELD: ZoneContainer(zone=Zone.BATTLEFIELD),
@@ -142,6 +138,9 @@ class GameState(BaseModel):
         return True
 
     # Tap /untap a card we are not concerned with zone location at the moment.
+    def is_tapped(self,card)->bool:
+        return card.tapped
+
     def tap_card(self,card):
         card.tap()
 
