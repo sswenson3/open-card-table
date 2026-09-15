@@ -23,6 +23,8 @@
     <EnableUnmanagedDebugging>false</EnableUnmanagedDebugging>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="app\catalogs\local_catalog.py" />
+    <Compile Include="app\catalogs\card_catalog.py" />
     <Compile Include="app\game\game_state.py">
       <SubType>Code</SubType>
     </Compile>
@@ -36,10 +38,10 @@
     </Compile>
     <Compile Include="app\models\card_definition.py" />
     <Compile Include="app\models\card_instance.py" />
-    <Compile Include="tests\test_m1_acceptance.py">
+    <Compile Include="tests\acceptance\test_m1_acceptance.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\test_game_state.py">
+    <Compile Include="tests\unit\game\test_game_state.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="app\models\player.py" />
@@ -49,16 +51,16 @@
     <Compile Include="run_server.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\test_zone_container.py">
+    <Compile Include="tests\unit\game\test_zone_container.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\test_player.py">
+    <Compile Include="tests\unit\models\test_player.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\test_card_instance.py">
+    <Compile Include="tests\unit\models\test_card_instance.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\test_card_definition.py">
+    <Compile Include="tests\unit\models\test_card_definition.py">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="tests\test_health.py">
@@ -80,7 +82,14 @@
     <Folder Include="app\" />
     <Folder Include="app\game\" />
     <Folder Include="app\models\" />
+    <Folder Include="app\catalogs\" />
     <Folder Include="tests\" />
+    <Folder Include="tests\acceptance\" />
+    <Folder Include="tests\integration\" />
+    <Folder Include="tests\unit\" />
+    <Folder Include="tests\unit\models\" />
+    <Folder Include="tests\unit\game\" />
+    <Folder Include="tests\unit\catalogs\" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
