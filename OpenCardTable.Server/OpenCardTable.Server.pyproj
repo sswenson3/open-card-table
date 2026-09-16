@@ -41,6 +41,12 @@
     <Compile Include="tests\acceptance\test_m1_acceptance.py">
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="tests\unit\catalogs\test_local_catalog.py">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="tests\unit\catalogs\test_card_catalog.py">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="tests\unit\game\test_game_state.py">
       <SubType>Code</SubType>
     </Compile>
@@ -63,7 +69,7 @@
     <Compile Include="tests\unit\models\test_card_definition.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\test_health.py">
+    <Compile Include="tests\integration\test_health.py">
       <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
@@ -83,6 +89,8 @@
     <Folder Include="app\game\" />
     <Folder Include="app\models\" />
     <Folder Include="app\catalogs\" />
+    <Folder Include="app\cli\" />
+    <Folder Include="app\api\" />
     <Folder Include="tests\" />
     <Folder Include="tests\acceptance\" />
     <Folder Include="tests\integration\" />

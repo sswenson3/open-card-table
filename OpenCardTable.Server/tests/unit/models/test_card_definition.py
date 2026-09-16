@@ -30,3 +30,19 @@ def test_card_definition_rejects_empty_name():
             name="",
         )
 
+def test_unique_definition_id():
+    cards = {}
+    
+    for i in range(10000):
+
+        card = CardDefinition.new(
+            name="Clockwork Griffin"+ str(i),
+        
+        ) 
+        cards[card.definition_id] = card
+
+    assert len(cards) == 10000
+
+    
+
+    
