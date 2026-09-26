@@ -25,9 +25,10 @@
   <ItemGroup>
     <Compile Include="app\catalogs\local_catalog.py" />
     <Compile Include="app\catalogs\card_catalog.py" />
-    <Compile Include="app\cli\module1.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="app\catalogs\card_definition_Interrogator.py" />
+    <Compile Include="app\catalogs\scryfall_adapter.py" />
+    <Compile Include="app\catalogs\scryfall_catalog.py" />
+    <Compile Include="app\cli\manual_card_entry_cli.py" />
     <Compile Include="app\game\game_state.py">
       <SubType>Code</SubType>
     </Compile>
@@ -50,9 +51,7 @@
     <Compile Include="tests\unit\catalogs\test_card_catalog.py">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="tests\unit\cli\test_ManualCardEntry.py">
-      <SubType>Code</SubType>
-    </Compile>
+    <Compile Include="tests\unit\catalogs\test_card_definition_interrogator.py" />
     <Compile Include="tests\unit\game\test_game_state.py">
       <SubType>Code</SubType>
     </Compile>
@@ -101,10 +100,14 @@
     <Folder Include="tests\acceptance\" />
     <Folder Include="tests\integration\" />
     <Folder Include="tests\unit\" />
+    <Folder Include="tests\unit\catalogs\test_data\" />
     <Folder Include="tests\unit\models\" />
     <Folder Include="tests\unit\game\" />
     <Folder Include="tests\unit\catalogs\" />
     <Folder Include="tests\unit\cli\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="tests\unit\catalogs\test_data\mtg_template.json" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)\Python Tools\Microsoft.PythonTools.targets" />
   <!-- Uncomment the CoreCompile target to enable the Build command in
