@@ -15,7 +15,7 @@ class CardDefinitionInterrogator:
         pass
 
     def get_fields(self):
-        return self._fields
+        return self._fields["fields"] if "fields" in self._fields else []
 
     def add_field( self, field_name:str, field_value:str):
         self._fields.append(field_name)
@@ -24,8 +24,4 @@ class CardDefinitionInterrogator:
         #loads fields from a file,  for example a json file,  and populates the _fields dictionary
         self._fields = json.load(open(filename))
         
-    def interrogate(self):
-        # Implement logic to interrogate the card definition
-        # For example, extract relevant information from the card definition
-        # and return it in a structured format.
-        pass
+  

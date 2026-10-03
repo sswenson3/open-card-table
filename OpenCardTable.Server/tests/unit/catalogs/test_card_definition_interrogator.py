@@ -1,6 +1,6 @@
 import pytest
 
-from app.catalogs.card_definition_Interrogator import CardDefinitionInterrogator
+from app.catalogs.card_definition_interrogator import CardDefinitionInterrogator
 
 def test_card_definition_interrogator_can_be_instantiated():
     interrogator = CardDefinitionInterrogator()
@@ -14,8 +14,9 @@ def test_card_definition_interrogator_load_fields():
 
     
     assert isinstance(interrogator._fields, dict)
-    assert "name" in interrogator._fields
-    assert "mana_cost" in interrogator._fields
-    assert "type_line" in interrogator._fields
-    assert "oracle_text" in interrogator._fields
-    assert "image_url" in interrogator._fields
+    fields = interrogator.get_fields()
+    assert "name" in fields
+    assert "mana_cost" in fields
+    assert "type_line"in fields
+    assert "oracle_text" in fields
+    assert "image_url" in fields

@@ -25,7 +25,7 @@
   <ItemGroup>
     <Compile Include="app\catalogs\local_catalog.py" />
     <Compile Include="app\catalogs\card_catalog.py" />
-    <Compile Include="app\catalogs\card_definition_Interrogator.py" />
+    <Compile Include="app\catalogs\card_definition_interrogator.py" />
     <Compile Include="app\catalogs\scryfall_adapter.py" />
     <Compile Include="app\catalogs\scryfall_catalog.py" />
     <Compile Include="app\cli\manual_card_entry_cli.py" />

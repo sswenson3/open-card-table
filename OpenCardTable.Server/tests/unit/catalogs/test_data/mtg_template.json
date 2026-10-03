@@ -3,35 +3,24 @@
     "game_name": "Magic: The Gathering",
     "template_version": 1,
     "fields": [
-        {
-            "name": "name",
-            "label": "Card Name",
-            "type": "string",
-            "required": true
-        },
-        {
-            "name": "mana_cost",
-            "label": "Mana Cost",
-            "type": "string",
-            "required": false
-        },
-        {
-            "name": "type_line",
-            "label": "Card Type",
-            "type": "string",
-            "required": false
-        },
-        {
-            "name": "oracle_text",
-            "label": "Card Rules Text",
-            "type": "text",
-            "required": false
-        },
-        {
-            "name": "image_uri",
-            "label": "Card Image Reference",
-            "type": "string",
-            "required": false
-        }
+        "name",
+        "mana_cost",
+        "mana_value",
+        "type_line",
+        "oracle_text",
+        "power",
+        "toughness",
+        "loyalty",
+        "colors",
+        "color_identity",
+        "keywords",
+        "layout",
+        "set_code",
+        "set_name",
+        "collector_number",
+        "rarity",
+        "artist",
+        "flavor_text",
+        "image_url"
     ]
 }
